@@ -1,0 +1,603 @@
+1 编写程序，输入三角形的三边，计算输出三角形的面积。
+In [25]:
+import math
+a=eval(input("请输入a边长："))
+b=eval(input("请输入b边长："))
+c=eval(input("请输入c边长："))
+p = (a + b + c) / 2
+s = math.sqrt(p * (p - a) * (p - b) * (p - c))
+print("三角形的面积是{:.2f}".format(s))
+2 编写程序，在列表
+['hi'
+,
+"programer"
+,
+'school'
+,
+'for'
+,
+'''chinese''']中输出最长的
+字符串。
+In [2]:
+lst=['hi',"programer",'school','for','''chinese''']
+lst1=[]
+for item in lst:
+ lst1.append(len(item))
+p=max(lst1)
+for item in lst:
+ if len(item)==p:
+ print(item,end=" ")
+3 编写程序，输入三科成绩，计算平均分和总分。
+In [3]:
+x=eval(input("请输入A科成绩："))
+y=eval(input("请输入B科成绩："))
+z=eval(input("请输入C科成绩："))
+print("3科成绩的平均分是{}，总分是{}".format((x+y+z)/3,x+y+z))
+4 编写程序，给出一个英文句子
+resident Xi Jinping urged all-out efforts to achieve the goal of eliminating poverty in China within two years in
+his three-day inspection tour of Chongqing,which ended on Wednesday.,统计单词个数。
+In [4]:
+sentence='''resident Xi Jinping urged all-out efforts
+to achieve the goal of eliminating poverty in China within two
+years in his three-day inspection tour of Chongqing,which ended on Wednesday.
+'''
+sentence=sentence.replace(","," ")
+sentence=sentence.replace("."," ")
+words=sentence.split()
+print(len(words))
+5 编写程序，给出一个字符串residEnt Xi Jinping urgEd
+all-out Efforts，将其中的字符“E“用空格替换后输出。
+In [5]:
+sentence='''residEnt Xi Jinping urgEd all-out Efforts'''
+print(sentence.replace("E"," "))
+6 编写程序，从键盘交互式输入一个人的18位的身份证号，
+以“2001年09月12日”格式输出其出生日期。
+In [6]:
+xx=input("IDCard Number:")
+print(xx[6:10]+"年"+xx[10:12]+'月'+xx[12:14]+"日")
+7 编写程序，给定字符串abc32TT9ac，对其中的每一个字
+符进行大小写转换，非字母字符不转换。
+In [7]:
+s="abc32TT9aC"
+t=""
+for i in range(len(s)):
+ if s[i].islower():
+ t+=s[i].upper() 
+ elif s[i].isupper():
+ t+=s[i].lower()
+ else:
+ t+=s[i]
+print(t)
+8 编写程序，输入一个整数12345，将各位数字反转后输
+出。
+In [8]:
+num=eval(input("请输入一个整数："))
+s=str(num)
+print(s[::-1])
+9 编写程序，一个数如果恰好等于它的因子之和，这个数称
+为“完数”
+，例，6的因子为1，2，3,而6=1+2+3，因此6就
+是“完数”
+。编程找出100内的所有完数。
+In [9]:
+for num in range(1,100):
+ t=0
+ s=""
+ for i in range(1,num//2+1):
+ if num%i==0:
+ t+=i
+ s+=str(i)+" "
+ if t==num:
+ print(t)
+ #print("{}是完数，其因子为：{}".format(t,s))
+10 编写程序，输入两个正整数m和n，求其最大公约数和最
+小公倍数。
+In [10]:
+m=eval(input("请输入正整数m:"))
+n=eval(input("请输入正整数n:"))
+if m<n:m,n=n,m
+t=m*n
+r=m%n
+while r!=0:
+ m=n
+ n=r
+ r=m%n
+print("最大公约数是：{}".format(n))
+print("最小公倍数是：{}".format(int(t/n)))
+11 编写程序，随机生成由英文字符和数据组成的4位验证
+码。
+In [11]:
+import random
+letters1="ABCDEFGHIJKLMN"
+letters2="opqrstuvwxyz"
+letters3="0123456789"
+letters=letters1+letters2+letters3
+code=""
+for i in range(4):
+ code+=random.choice(letters)
+print("产生的验证码是：{}".format(code))
+12 编写程序，使用input函数，输入若干单词，按顺序输出
+单词(如果某个单词出现多次，只输出一次)。
+In [14]:
+words=input("请输入若干单词，用英文逗号分割：")
+word_list=words.split(",")
+aset=set()
+for i in word_list: #去除重复元素
+ aset.add(i)
+word3=list(aset) #将集合转换为列表后，排序
+word3.sort()
+print(word3)
+请输入正整数m:56
+请输入正整数n:78
+最大公约数是：2
+最小公倍数是：2184
+产生的验证码是：EpL1
+请输入若干单词，用英文逗号分割：dfasdf,2341324,asdfasdfsa,kkksd
+['2341324', 'asdfasdfsa', 'dfasdf', 'kkksd']
+13 编写程序，编写函数isodd(x)，若x不是整数，给出提示
+后退出程序；如果x为奇数，返回True，如果x为偶数，返
+回False。
+In [15]:
+def isodd(x):
+ if int(x)!=x:
+ print("x不是整数，程序退出！")
+ return
+ elif x//2 != x/2:
+ return True
+ else:
+ return False
+print(isodd(3))
+print(isodd(3.2)) 
+print(isodd(32))
+14 编写程序，编写函数change(str1)，其功能是对参数
+str1（字符串"iu98kLLD"）进行大小写转换，非英文字符
+不转换。
+In [16]:
+def change(str1):
+ t=""
+ for i in range(len(str1)):
+ if str1[i].islower():
+ t+=str1[i].upper()
+ elif str1[i].isupper():
+ t+=str1[i].lower()
+ else:
+ t+=str1[i]
+ return t
+print(change("iu98kLLD"))
+15 编写程序，编写并测试函数reverse(x)，输入一个整数
+12345，将各位数字反转后输出。
+In [17]:
+def reverse(x):
+ y=str(x)
+ y=y[::-1]
+ return int(y)
+print(reverse(12345))
+16 编写程序，用递归方法反转一个字符串，把“abcde”
+，
+反转为“edcba”
+。
+In [18]:
+def func(s):
+ if len(s) <1:
+ return s
+ return func(s[1:])+s[0]
+s="abcde"
+result = func(s)
+print(result)
+17 编写程序，设计一个Group类，在该类中包括：一个数
+据成员score（每个学生的分数）、两个类成员total（班级
+的总分）和count（班级的人数）。成员方法
+setScore(socre)用于设置分数，成员方法sum()用于累计
+总分，类方法average()用于求平均值。交互式输入某组学
+生的成绩，显示该组的总分和平均分。
+In [19]:
+class Group:
+ total = count = 0
+ 
+ def setScore(self, score):
+ self.score = score
+ def getScore(self):
+ return self.score
+ def __init__(self, score):
+ self.setScore(score)
+ Group.count += 1
+ self.sum()
+ def sum(self):
+ Group.total+=self.getScore()
+ @classmethod
+ def average(cls):
+ return Group.total/Group.count
+ @classmethod
+ def show(cls):
+ print("总分是：{}".format(Group.total))
+ print("平均分是：{}".format(Group.average()))
+s1=Group(90)
+s2=Group(87)
+s3=Group(93)
+Group.show()
+18 编写程序，为二次方程式ax2+bx+c=0设计一个名为
+Equation的类，这个类包括：
+● 代表三个系数的成员变量a、b、c。
+● 一个参数为a、b、c的构造方法。
+● 一个名为getDiscriminant()的方法返回判别式的值。
+● 一个名为getRoot1()和getRoot2()的方法返回等式的两个
+根：如果判别式为负，这些方法返回0。
+In [20]:
+import math
+class Equation:
+ def __init__(self,a,b,c):
+ self.a=a
+ self.b=b
+ self.c=c
+ def getDeta(self):
+ return self.b*self.b-4*self.a*self.c
+ def getRoot1(self):
+ if self.getDeta()<0:
+ return 0
+ else:
+ return (-self.b+math.sqrt(self.getDeta()))/(2*self.a)
+ def getRoot2(self):
+ if self.getDeta()<0:
+ return 0
+ else:
+ return (-self.b-math.sqrt(self.getDeta()))/(2*self.a)
+e1= Equation(1,4,5)
+print(e1.getRoot1(),e1.getRoot2())
+19 编写程序，使用random库，产生10个100到200之间的
+随机数，并求其最大值、平均值、标准差和中位数。
+In [21]:
+#平均数
+def mean(numlist):
+ s = 0.0
+ for num in numlist:
+ s = s + num
+ return s/len(numlist)
+##标准差=sqrt(((x1-x)^2 +(x2-x)^2 +......(xn-x)^2)/n)。
+def dev(numlist,mean):
+ sdev = 0.0
+ for num in numlist:
+ sdev = sdev + (num - mean)**2
+ return (sdev /(len(numlist)-1) )** 0.5
+def median(numlist):
+ numlist.sort()
+ half = len(numlist) // 2
+ return (numlist[half] + numlist[~half]) / 2
+#函数调用
+ls1 = [1,3,-6,5,8]
+ls2=[3.2,9,-32,56,0,1]
+v1=max(ls2)
+v2=mean(ls2)
+v3=dev(ls2,v2)
+v4=median(ls2)
+print("最大值:{:.2f}，平均值:{:.2f},标准差:{:.2f},中位数:{:.2f}".format(v1,v2,v3,v4))
+20 编写程序，编程实现索引超出范围异常IndexError类
+型。
+In [24]:
+try:
+ chars=['a','b','c','d','e']
+ chars[4]=1
+ print(chars)
+ chars[5]='xx'
+except IndexError:
+ print("索引超过范围")
+最大值:56.00，平均值:6.20,标准差:28.36,中位数:2.10
+['a', 'b', 'c', 'd', 1]
+索引超过范围
+1.公司设定了一个奖励方案，要求设计一个函数，可以传入
+绩效，得到对应提成
+方案为：小于10000，按0.02计算提成；大于等于10000，小于50000，按0.03计算；大于等于50000小于
+100000，按0.04计算；当大于等于100000，按0.06计算
+In [1]:
+def func(result):
+ if result<10000:
+ money = result*0.02
+ elif result<50000:
+ money = result*0.03
+ elif result<100000:
+ money = result*0.04
+ else:
+ money = result*0.06
+ return money
+a = func(80000)
+b = func(120000)
+print(a)
+print(b)
+2.小华编写了一个程序，这个程序能完成一个功能，通过用
+户输入月份和日期就能计算出这是今年的第几天。
+思路：对月份做判断，是否满足月份的范围，再到元组内取出对应数（元组的每个元素为月累计天数，例如1
+月，累计0天，2月累计1月的31天，3月累计1-2月的31+28天，4月累计1-2-3月的31+28+31天...）元组的月累
+计数+日=总天数
+In [2]:
+month=int(input("请输入月份："))
+day=int(input("请输入日："))
+months=(0,31,59,90,120,151,181,212,243,273,304,334)
+if 0<month<=12:
+ sum_day=months[month-1]
+else:
+ print("month error!")
+sum_day=day+sum_day
+print("这是第{}天".format(sum_day))
+3#.做一个规划习惯，每月的开支和收入做一个记录，通过面向对象的编程形式，设计一个Accounting类，包
+含两个方法。 1.surplus方法，计算剩余多少钱 2.average方法，计算平均每月支出与收入
+In [9]:
+class Accounting:
+ def __init__(self,income,pay):
+ self.i=income
+ self.p=pay
+ def surplus(self):
+ incomes=sum(self.i)
+ pays=sum(self.p)
+ sur=incomes-pays
+ print("一年剩余{}".format(sur))
+ def average(self):
+ income_avg=sum(self.i)/len(self.i)
+ pay_avg=sum(self.p)/len(self.p)
+ print("平均收入{}\n平均支出{}".format(income_avg,pay_avg))
+In [10]:
+li1=[5000,5200,5500,5300,5000,5600,5100,5400,5200,5000,5400,5300]
+li2=[1000,900,1100,500,800,2000,700,1000,1000,900,1100,1000]
+a1=Accounting(li1,li2)
+a1.surplus()
+a1.average()
+4.公司的 OA 系统出现故障时，员工信息就会出现了各种乱
+码字符，现在你用python获取到了这些内容，需要你处理
+好这些字符串：
+李欣���女�23岁��内容设计�月薪8925.01010101"
+要求：
+1-符串中的乱码去除
+2-符串中取出姓名、性别、年龄、岗位、月薪这5个信息
+3-输出格式，设定字符串的格式，并将取出的信息填入到设定的字符串格式中，将 8925.01010101 保留1位小
+数，并最终输出以下格式的信息
+姓名：李欣
+性别：女
+年龄：23岁
+岗位：内容设计
+月薪：8925.0
+In [19]:
+workers="李欣���女�23岁��内容设计�月薪8925.01010101"
+update=workers.replace('�','')
+#方法一
+print("姓名:%s\n性别:%s\n年龄:%s\n岗位:%s\n月薪:%.1f"%(update[0:2],update[2],update[3:6],upda
+te[6:10],float(update[12:])))
+#方法二
+print("姓名:%s\n性别:%s\n年龄:%s\n岗位:%s\n月薪:%.1f"%(update[0:2],update[2],update[3:6],upda
+te[6:10],float(update[12:])))
+5.输入三个整数 x,y,z，请把这三个数由小到大输出
+In [20]:
+x=int(input("请输入第一个整数："))
+y=int(input("请输入第二个整数："))
+z=int(input("请输入第三个整数："))
+if x>y:
+ x,y=y,x
+if x>z:
+ x,z=z,x
+if y>z:
+ y,z=z,y
+print(x,y,z,sep="<")
+6.小明妈妈是数学老师，对小明的数学要求很严格，如果这
+次考试，小明数学成绩超过90，并且语文超过60就可以带
+小明去游乐园，请输入小明的两科成绩，判断是否可以去游
+乐园
+In [21]:
+math=int(input("数学："))
+english=int(input("语文："))
+if math>=90 and english>=60:
+ print("可以去游乐园玩了！")
+else:
+ print("不可以去游乐园玩！")
+7.求出1至1000的和
+In [22]:
+s=0
+for i in range(1,1001):
+ s+=i
+print(s)
+8.有1、2、3、4个数字，能组成多少个互不相同且 重复数
+字的三位数？都是多少？
+In [23]:
+count=0 #计数
+nums=[] #初始化
+for i in range(1,5): #百位循环
+ for j in range(1,5):#十位循环
+ for x in range(1,5):#个位循环
+ if (i!=j) and (i!=x) and(j!=x): #判断不重复的三个数
+ num=100*i+10*j+x
+ count+=1 #累加
+ if num not in nums:
+ nums.append(num) #添加到数组
+print(count,nums)
+9设计一款游戏，计算机得到一个1-100的数，给5次机会来
+输入一个数，来判断是否与计算机的数相等，不相等则提示
+猜测值过大还是过小
+In [25]:
+import random
+num=random.randint(1,100)
+for i in range(5):
+ n=int(input("请输入一个数："))
+ if n>num:
+ print("大了")
+ elif n<num:
+ print("小了")
+ else:
+ print("答对了")
+10.制作一个程序，可以输入一个值，来判断数据是否存在
+于列表内，如果存在就输出对应信息，不存在就提示不存
+在。
+names= [['赵明', '男', 34, '数据分析师', 16800.0, '广东汕头'], ['王大宏', '男', 25, '课程设计师', 13000.0, "湖北武
+汉"], ['李龙龙', '男', 27, '直播讲师', 12500.0, "广西桂林"], ['刘梓涵', '女', 24, '动画设计师', 13000.0, "湖南长沙"],
+['张越', '男', 25, '课程设计师', 13000.0, "江西"], ['李青', '女', 23, '动画计师', 13000.0, "广东深圳"], ['陈明', '男',
+26, '社群运营', 9800.0, "海南三亚"]]
+In [26]:
+names= [['赵明', '男', 34, '数据分析师', 16800.0, '广东汕头'],
+ ['王大宏', '男', 25, '课程设计师', 13000.0, "湖北武汉"],
+ ['李龙龙', '男', 27, '直播讲师', 12500.0, "广西桂林"],
+ ['刘梓涵', '女', 24, '动画设计师', 13000.0, "湖南长沙"],
+ ['张越', '男', 25, '课程设计师', 13000.0, "江西"],
+ ['李青', '女', 23, '动画计师', 13000.0, "广东深圳"],
+ ['陈明', '男', 26, '社群运营', 9800.0, "海南三亚"]]
+name=input("请输入要查询的员工姓名：")
+for i in names:
+ if name in i:
+ print("已查询到该员工！")
+ print("其基本信息为：",i)
+ break
+ else:
+ continue
+if name not in i:
+ print('查无此人！')
+11.下面是公司的员工体重，按斤为单位，要计算身体健康
+情况需要转换成kg，请你完成下列值的转换（2斤为
+1kg)
+li_4 = [200,120,140,180,146,100,98]
+In [33]:
+li_4 = [200,120,140,180,146,100,98]
+li=[]
+for i in li_4:
+ li.append(str(i/2)+"Kg")
+print(li)
+12.下列表内有两名员工的姓名和各自6个月的工资，并计算
+出这两个员工各自的平均工资、最低工资和最高工资
+pay=['李红',9362,8087,9036,8866,8461,9108,'王越,8215,8276,8953,9018,9110,8556]
+In [39]:
+pay=['李红',9362,8087,9036,8866,8461,9108,'王越',8215,8276,8953,9018,9110,8556]
+li=pay[1:7]
+wang=pay[8:]
+li_min=min(li)
+li_max=max(li) 
+li_avg=sum(li)/len(li)
+print("李红的平均工资为{},最高工资{},最低工资{}".format(li_avg,li_max,li_min))
+wang_min=min(wang)
+wang_max=max(wang) 
+wang_avg=sum(wang)/len(wang)
+print("王越的平均工资为{},最高工资{},最低工资{}".format(wang_avg,wang_max,wang_min))
+13小丹是一家女服装店的店员，她用列表结构存储了店铺
+本周的服装售卖记录，即每售出一件服饰，就会将该服饰名
+称存入到列表中，现需要你用python来对这个记录做一下
+计数，来查看一下销售情况
+quantity=['半身裙','连衣裙','圆领T恤','直筒牛仔裤','百褶裙','V领T恤','V领T恤', '紧身牛仔裤','编织马甲','牛仔
+裙','休闲裤','喇叭裤','衬衫','连衣裙', 'V领T恤','紧身牛仔裤','半身裙','编织马甲','V领T恤','连衣裙','圆领T恤' ,'紧身
+牛仔裤','连衣裙','连衣裙','百褶裙','圆领T恤','衬衫','圆领T恤', '紧身牛仔裤','喇叭裤','直筒牛仔裤','圆领T恤','圆领T
+恤','衬衫', '直筒牛仔裤','连衣裙','半身裙','圆领']
+In [44]:
+quantity=['半身裙','连衣裙','圆领T恤','直筒牛仔裤','百褶裙','V领T恤','V领T恤',
+ '紧身牛仔裤','编织马甲','牛仔裙','休闲裤','喇叭裤','衬衫','连衣裙',
+ 'V领T恤','紧身牛仔裤','半身裙','编织马甲','V领T恤','连衣裙','圆领T恤'
+ ,'紧身牛仔裤','连衣裙','连衣裙','百褶裙','圆领T恤','衬衫','圆领T恤',
+ '紧身牛仔裤','喇叭裤','直筒牛仔裤','圆领T恤','圆领T恤','衬衫',
+ '直筒牛仔裤','连衣裙','半身裙','圆领']
+dic={}
+for i in quantity:
+ dic[i]=dic.get(i,0)+1
+print(dic)
+14公司为更好的控制公司信息安全，用元组定义了对应信
+息，现发生特殊情况，不得不对信息进行更改，如下：
+tuple_s = ("it技术部","数据分析部","销售部","人事部")
+list_s = [26, 102, 212, 101]
+现要求 1.更改"数据分析部"为"数据信息部" 2.整合tuple_s与list_s信息，tuple_s表示部门名称，list_s表示部门
+人数
+In [46]:
+tuple_s = ("it技术部","数据分析部","销售部","人事部")
+list_s = [26, 102, 212, 101]
+li=list(tuple_s)
+li[1]="数据信息部"
+print(li)
+zip_li=list(zip(li,list_))
+print(zip_li)
+15 编写一个1-5互不重复的五位数密码组合，并统计组合
+数，输出统计数和排列组合并按降序排列输出。演示结果
+In [47]:
+#编写一个1-5互不重复的五位数的组合
+nums=set()
+for i in range(1,6):
+ for j in range(1,6):
+ for x in range(1,6):
+ for y in range(1,6):
+ for z in range(1,6):
+ if (i!=j) and (i!=x) and (i!=y) and (i!=z) and (j!=x)\
+ and (j!=y) and (j!=z) and (x!=y) and (x!=z) and (y!=z):
+ num=10000*i+1000*j+100*x+10*y+1*z
+ 
+ nums.add(num)
+ a=len(nums)
+print("%5d"%(a),sorted(nums,reverse=True))
+16.制作一个模拟网站登陆的程序，网店预设帐号
+“abcdef”
+，密码为”123456”
+要求：
+1. 需要帐号密码登录
+2. 限制3次输入帐号密码的机会，超过提示“超过三次请明天再试！“
+3. 输入帐号密码错误，提示：“输入错误，请重新输入：”
+4. 输入帐号密码正确，提示：”登陆成功！“
+In [49]:
+password = 0
+account = 0
+count = 0
+while account !='abcdef' or password !='123456':
+ count += 1
+ if count >3:
+ print('3次输入错误，请明天再试！')
+ break
+ elif count >1:
+ print('输入错误，请重新输入！')
+ account = input('请输入帐号：')
+ password = input('请输入密码：')
+if count <= 3:
+ print('登陆成功！')
+17 现在公司需要为一个大型项目组的 56 名员工定制文化
+衫，其尺码和颜色数据记录如下：
+sizes = [175, 170, 170, 170, 160, 175, 170, 165, 180, 175, 170, 165, 170, 170, 165, 175, 180, 180, 170, 175,
+180, 175, 165, 170, 165, 180, 160, 165, 175, 160, 170, 160, 170, 160, 180, 170, 160, 175, 170, 165, 175,
+170, 175, 160, 170, 170, 180, 165, 160, 175, 170, 170, 175, 160, 175, 180] colors = ['黑色', '黑色', '黑色', '黑
+色', '红色', '白色', '白色', '黑色', '白色', '白色', '白色', '红色', '白色', '白色', '蓝色', '黄色', '黑色', '红色', '黑色', '黑
+色', '白色', '红色', '白色', '黑色', '红色', '黑色', '蓝色', '白色', '黄色', '白色', '黑色', '白色', '白色', '白色', '红色', '白
+色', '白色', '黑色', '黑色', '黄色', '红色', '黄色', '黄色', '白色', '黄色', '黄色', '红色', '白色', '白色', '红色', '黑色', '黑
+色', '白色', '黑色', '白色', '红色'] 要求：
+1-对列表 sizes 进行去重操作，得到尺码种类
+2-对列表 colors 进行去重操作，得到颜色种类
+3-使用 zip() 函数，将 sizes 和 color 列表中所对应的与元素打包成一个个元组，并输出由这些元组组成的列表
+4-统计出每种类型的文化衫的数量
+In [50]:
+sizes = [175, 170, 170, 170, 160, 175, 170, 165, 180, 175, 170, 165, 170, 170, 165, 175, 180, 18
+0, 170, 175, 180, 175, 165, 170, 165, 180, 160, 165, 175, 160, 170, 160, 170, 160, 180, 170, 16
+0, 175, 170, 165, 175, 170, 175, 160, 170, 170, 180, 165, 160, 175, 170, 170, 175, 160, 175, 18
+0]
+colors = ['黑色', '黑色', '黑色', '黑色', '红色', '白色', '白色', '黑色', '白色', '白色', '白
+色', '红色', '白色', '白色', '蓝色', '黄色', '黑色', '红色', '黑色', '黑色', '白色', '红色', '白
+色', '黑色', '红色', '黑色', '蓝色', '白色', '黄色', '白色', '黑色', '白色', '白色', '白色', '红
+色', '白色', '白色', '黑色', '黑色', '黄色', '红色', '黄色', '黄色', '白色', '黄色', '黄色', '红
+色', '白色', '白色', '红色', '黑色', '黑色', '白色', '黑色', '白色', '红色']
+sizes_set=set(sizes)
+colors_set=set(colors)
+list=list(zip(sizes,colors))
+Dict={}
+for i in list:
+ Dict[i]=Dict.get(i,0)+1
+print(Dict)
+18.编写九九乘法表
+In [56]:
+for i in range(1,10):
+ for j in range(1,i+1):
+ print(str(i)+"*"+str(j),'=%2d'%(i*j),end='|')
+ print('')
+19.输入一个自然数N，计算N个自然数的阶乘之和N！+(N-
+1）!+……1!
+In [57]:
+n=int(input("请输入一个N（整数的值："))
+s=0
+j=1
+for i in range(1,n+1):
+ j=j*i
+ s=s+j
+print("%d的阶乘之和是：%d"%(n,s))
+20 数字炸弹：设计一个【数字炸弹】，在1-10内猜数，五
+人玩（也就是五次输入），猜对的人就算接到了炸弹算输，
+就可以结束游戏了
+In [61]:
+import random
+rand_num=random.randint(1,10)
+for i in range(5):
+ num=int(input("{}号玩家输入：（1-10的数）".format(i+1)))
+ if rand_num==num:
+ print("嘣！！！这个数字是{}，{}号玩家牺牲了".format(rand_num,i+1))
+ break
+ else:
+ print("{}玩家有惊无险。。。".format(i+1))
